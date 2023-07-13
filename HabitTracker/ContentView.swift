@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var activities = Activities()
+    
+    @State private var isShowingAddSheet = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List {
+                ForEach(activities.all) { activity in
+                    Text(activity.name)
+                }
+            }
+            .navigationTitle("Habit Tracker")
+            .toolbar {
+                Button {
+                    isShowingAddSheet = true
+                } label:{
+                    Image(systemName: "plus")
+                }
+            }
         }
-        .padding()
+        .sheet(isPresented: $isShowingAddSheet) {
+            AddHabit(activities: activities)
+        }
     }
 }
 
