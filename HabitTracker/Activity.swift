@@ -11,4 +11,6 @@ struct Activity: Identifiable {
     let id = UUID()
     let name: String
     let description: String
+    
+    var completionCount = 0
 }

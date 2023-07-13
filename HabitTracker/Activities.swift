@@ -9,4 +9,13 @@ import SwiftUI
 
 class Activities: ObservableObject {
     @Published var all = [Activity]()
+    
+    subscript(index: Int) -> Activity {
+        get {
+            all[index]
+        }
+        set {
+            all[index] = newValue
+        }
+    }
 }

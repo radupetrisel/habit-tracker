@@ -15,11 +15,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(activities.all) { activity in
+                ForEach(activities.all.indices, id: \.self) { index in
                     NavigationLink {
-                        ActivityDetailView(activity: activity)
+                        ActivityDetailView(activities: activities, activityIndex: index)
                     } label: {
-                        Text(activity.name)
+                        Text(activities[index].name)
                     }
                 }
             }
